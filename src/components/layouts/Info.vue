@@ -3,7 +3,7 @@
     <slot name="header"></slot>
     <div>
       <slot name="info"></slot>
-      <slot name="bulletin"></slot>
+      <slot name="tier"></slot>
     </div>
   </div>
 </template>

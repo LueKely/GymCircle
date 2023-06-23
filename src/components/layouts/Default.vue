@@ -35,6 +35,9 @@
         <Welcome></Welcome>
       </template>
       <template #info><UserInformation></UserInformation> </template>
+      <template #tier>
+        <TierCard></TierCard>
+      </template>
     </Info>
   </v-main>
 </template>
@@ -43,6 +46,7 @@
 import UserInformation from "@/components/common/UserInformation.vue";
 import Info from "./Info.vue";
 import Welcome from "@/views/user/Welcome.vue";
+import TierCard from "@/components/common/TierCard.vue";
 </script>
 
 <style scoped>
