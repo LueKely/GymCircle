@@ -29,7 +29,7 @@
   </v-navigation-drawer>
 
   <!-- main content -->
-  <v-main class="bg-grey-lighten-2 d-flex align-start justify-start">
+  <v-main class="bg-grey-lighten-4 d-flex align-start justify-start">
     <Info>
       <template #header>
         <Welcome></Welcome>
