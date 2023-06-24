@@ -11,6 +11,8 @@
     <v-list
       ><v-list-subheader>Perks</v-list-subheader>
       <v-list-item>• Free poop </v-list-item>
+      <v-list-item>• Free poop </v-list-item>
+      <v-list-item>• Free poop </v-list-item>
     </v-list>
   </v-card>
 </template>

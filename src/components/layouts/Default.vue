@@ -38,6 +38,7 @@
       <template #tier>
         <TierCard></TierCard>
       </template>
+      <template #bulletin> <BulletinBoard></BulletinBoard></template>
     </Info>
   </v-main>
 </template>
@@ -47,6 +48,7 @@ import UserInformation from "@/components/common/UserInformation.vue";
 import Info from "./Info.vue";
 import Welcome from "@/views/user/Welcome.vue";
 import TierCard from "@/components/common/TierCard.vue";
+import BulletinBoard from "@/components/common/BulletinBoard.vue";
 </script>
 
 <style scoped>
