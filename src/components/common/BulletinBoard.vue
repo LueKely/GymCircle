@@ -1,6 +1,6 @@
 <template>
   <v-card width="100%" class="pb-10">
-    <v-card-title>Bulletin Board 📢 </v-card-title>
+    <v-card-title>📢 Bulletin Board </v-card-title>
     <v-timeline side="end" density="compact" class="mx-5">
       <v-timeline-item
         size="small"

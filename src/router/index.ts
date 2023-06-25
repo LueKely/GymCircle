@@ -14,6 +14,10 @@ const routes = [
         path: "edit",
         component: () => import("@/views/user/EditInfo.vue"),
       },
+      {
+        path: "subscription",
+        component: () => import("@/views/user/Subscription.vue"),
+      },
     ],
   },
 ];

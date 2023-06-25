@@ -10,21 +10,19 @@
 
     <v-list nav>
       <v-list-item
-        prepend-icon="mdi-email"
+        prepend-icon="mdi-account-circle"
         title="Profile"
         :to="routerName('profile')"
-        value="inbox"
       ></v-list-item>
       <v-list-item
-        prepend-icon="mdi-account-supervisor-circle"
+        prepend-icon="mdi-note-edit"
         title="Edit Profile"
         :to="routerName('edit')"
-        value="supervisors"
       ></v-list-item>
       <v-list-item
-        prepend-icon="mdi-clock-start"
-        title="Clock-in"
-        value="clockin"
+        prepend-icon="mdi-card-account-details-star"
+        title="Subscription"
+        :to="routerName('subscription')"
       ></v-list-item>
     </v-list>
   </v-navigation-drawer>

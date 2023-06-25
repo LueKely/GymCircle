@@ -1,6 +1,6 @@
 <template>
   <v-card width="600" elevation="1" rounded="lg" class="mb-2">
-    <v-card-title>User Info</v-card-title>
+    <v-card-title>🫵 User Info</v-card-title>
     <v-card-text>
       <v-list density="compact">
         <v-list-item

@@ -1,6 +1,6 @@
 <template>
   <v-card width="600px" rounded="lg">
-    <v-card-title>Tier</v-card-title>
+    <v-card-title>⭐️ Tier</v-card-title>
     <v-card-text class="d-flex justify-space-between"
       ><h4 class="text-h4 font-weight-bold">Gold 🥇</h4>
       <p>

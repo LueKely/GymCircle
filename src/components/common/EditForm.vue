@@ -7,7 +7,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <h1>Edit</h1>
+          <h1>✍️ Edit</h1>
         </v-col>
       </v-row>
       <v-row>
