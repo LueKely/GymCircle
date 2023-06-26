@@ -20,6 +20,7 @@ const routes = [
       },
     ],
   },
+  { path: "", component: () => import("@/views/hero/HomePage.vue") },
 ];
 
 const router = createRouter({
