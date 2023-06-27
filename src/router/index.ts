@@ -1,26 +1,38 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
+import { defineAsyncComponent } from "vue";
 
 const routes = [
   {
     path: "/user",
-    component: () => import("@/components/layouts/Default.vue"),
+    component: defineAsyncComponent(
+      () => import("@/components/layouts/Default.vue")
+    ),
     children: [
       {
         path: "profile",
-        component: () => import("@/views/user/UserInfo.vue"),
+        component: defineAsyncComponent(
+          () => import("@/views/user/UserInfo.vue")
+        ),
       },
       {
         path: "edit",
-        component: () => import("@/views/user/EditInfo.vue"),
+        component: defineAsyncComponent(
+          () => import("@/views/user/EditInfo.vue")
+        ),
       },
       {
         path: "subscription",
-        component: () => import("@/views/user/Subscription.vue"),
+        component: defineAsyncComponent(
+          () => import("@/views/user/Subscription.vue")
+        ),
       },
     ],
   },
-  { path: "", component: () => import("@/views/hero/HomePage.vue") },
+  {
+    path: "",
+    component: defineAsyncComponent(() => import("@/views/hero/HomePage.vue")),
+  },
 ];
 
 const router = createRouter({
