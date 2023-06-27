@@ -5,9 +5,7 @@ import { defineAsyncComponent } from "vue";
 const routes = [
   {
     path: "/user",
-    component: defineAsyncComponent(
-      () => import("@/components/layouts/Default.vue")
-    ),
+    component: () => import("@/components/layouts/Default.vue"),
     children: [
       {
         path: "profile",
