@@ -1,7 +1,23 @@
 <template>
-  <div class="mx-5" v-for="(info, index) in pricingInfo" :key="index">
-    <PricingCard :info="info" @change="handleEmit"></PricingCard>
-  </div>
+  <v-sheet
+    width="100%"
+    height="100%"
+    color="transparent"
+    class="d-flex flex-column align-center justify-center pa-15"
+  >
+    <h1 class="mb-10 text-h2">Choose Your Plan</h1>
+    <v-sheet
+      width="auto"
+      class="d-flex items-center justify-center mb-10"
+      color="transparent"
+    >
+      <div class="mx-5" v-for="(info, index) in pricingInfo" :key="index">
+        <PricingCard :info="info" @change="handleEmit"></PricingCard>
+      </div>
+    </v-sheet>
+  </v-sheet>
+
+  <!-- 1st dialgo -->
   <v-dialog v-model="confirmation" width="auto">
     <v-card>
       <v-card-text> Are you sure you want to subscribe? </v-card-text>
@@ -11,6 +27,8 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <!-- 2nd dialog -->
   <v-dialog v-model="generated" width="600px">
     <v-card class="pa-5 text-center">
       <v-icon
@@ -26,6 +44,7 @@
         bring the appropriate cash. Your transaction receipts will be stored in
         your transaction history so don't worry.
       </v-card-text>
+      <v-divider class="border-opacity-100 my-2"></v-divider>
       <v-card-actions class="mx-auto">
         <v-btn color="primary" @click="generated = false">Close</v-btn>
         <v-btn color="primary" @click="copyText">Copy to Clipboard</v-btn>
