@@ -35,9 +35,20 @@ const routes = [
       },
     ],
   },
+
   {
     path: "",
     component: defineAsyncComponent(() => import("@/views/hero/HomePage.vue")),
+  },
+  {
+    path: "/aboutus",
+    component: defineAsyncComponent(
+      () => import("@/views/hero/AboutUsPage.vue")
+    ),
+  },
+  {
+    path: "/pricing",
+    component: defineAsyncComponent(() => import("@/views/hero/Pricing.vue")),
   },
 ];
 
