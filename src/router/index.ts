@@ -27,6 +27,12 @@ const routes = [
           () => import("@/views/user/Subscription.vue")
         ),
       },
+      {
+        path: "history",
+        component: defineAsyncComponent(
+          () => import("@/views/user/TransactionHistory.vue")
+        ),
+      },
     ],
   },
   {

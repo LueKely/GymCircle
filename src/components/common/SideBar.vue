@@ -8,7 +8,7 @@
       </v-list-item>
     </v-list>
 
-    <v-list nav>
+    <v-list nav class="px-4">
       <v-list-item
         prepend-icon="mdi-account-circle"
         title="Profile"
@@ -23,6 +23,11 @@
         prepend-icon="mdi-card-account-details-star"
         title="Subscription"
         :to="routerName('subscription')"
+      ></v-list-item>
+      <v-list-item
+        prepend-icon="mdi-clipboard-text-clock"
+        title="Transaction History"
+        :to="routerName('history')"
       ></v-list-item>
     </v-list>
   </v-navigation-drawer>
