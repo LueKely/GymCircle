@@ -1,14 +1,16 @@
 <template>
   <v-sheet width="100%" height="100%" color="transparent" class="pa-5">
-    <h1>Points Store 🏪</h1>
-    <v-card
-      width="250"
-      height="70"
-      class="d-flex justify-start align-center"
-      variant="tonal"
-    >
-      <v-card-title> Current Points:{{ currentPoints }}</v-card-title>
-    </v-card>
+    <div class="d-flex justify-space-between align-center">
+      <h1>Points Store 🏪</h1>
+      <v-card
+        width="250"
+        height="70"
+        class="d-flex justify-start align-center"
+        variant="elevated"
+      >
+        <v-card-title> Current Points: {{ currentPoints }}</v-card-title>
+      </v-card>
+    </div>
 
     <v-sheet border rounded width="100%" class="mt-2 pa-5">
       <h3 class="mb-3">What you can redeem:</h3>

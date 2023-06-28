@@ -1,9 +1,9 @@
 <template>
-  <v-card width="250px" height="300px">
+  <v-card width="300px" height="250px">
     <v-img height="150" :src="props.url" cover class="text-white"></v-img>
-    <v-card-title> {{ props.cardName }}</v-card-title>
-    <v-card-text>{{ props.points }} pts</v-card-text>
-    <v-card-actions>
+    <v-card-title> {{ props.cardName }} - {{ props.points }}pts</v-card-title>
+
+    <v-card-actions class="">
       <v-btn @click="click">Redeem</v-btn>
     </v-card-actions>
   </v-card>
