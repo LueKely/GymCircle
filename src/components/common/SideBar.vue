@@ -29,6 +29,11 @@
         title="Transaction History"
         :to="routerName('history')"
       ></v-list-item>
+      <v-list-item
+        prepend-icon="mdi-storefront"
+        title="Points Store"
+        :to="routerName('store')"
+      ></v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>

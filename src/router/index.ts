@@ -31,6 +31,12 @@ const routes = [
           () => import("@/views/user/TransactionHistory.vue")
         ),
       },
+      {
+        path: "Store",
+        component: defineAsyncComponent(
+          () => import("@/views/user/PointStore.vue")
+        ),
+      },
     ],
   },
 
