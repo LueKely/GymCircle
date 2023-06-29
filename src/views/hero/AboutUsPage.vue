@@ -4,6 +4,6 @@
 
 <style scoped>
 .hello {
-  background-color:black;
+  background-color: black;
 }
 </style>
