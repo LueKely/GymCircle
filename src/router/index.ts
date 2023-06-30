@@ -54,6 +54,10 @@ const routes = [
     path: "/pricing",
     component: defineAsyncComponent(() => import("@/views/hero/Pricing.vue")),
   },
+  {
+    path: "/login",
+    component: defineAsyncComponent(() => import("@/views/hero/LogIn.vue")),
+  },
 ];
 
 const router = createRouter({
