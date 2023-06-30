@@ -1,7 +1,12 @@
 <template>
+  <navbar></navbar>
   <router-link to="/user/profile">PROFILE</router-link>
-  <div class="hello">HOME</div>
+  <router-view></router-view>
 </template>
+
+<script setup lang="ts">
+import navbar from "@/components/common/navbar.vue";
+</script>
 
 <style scoped lang="scss">
 .hello {

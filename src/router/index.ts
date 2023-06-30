@@ -42,21 +42,32 @@ const routes = [
 
   {
     path: "",
+    redirect: "/hero",
     component: defineAsyncComponent(() => import("@/views/hero/HomePage.vue")),
-  },
-  {
-    path: "/aboutus",
-    component: defineAsyncComponent(
-      () => import("@/views/hero/AboutUsPage.vue")
-    ),
-  },
-  {
-    path: "/pricing",
-    component: defineAsyncComponent(() => import("@/views/hero/Pricing.vue")),
-  },
-  {
-    path: "/login",
-    component: defineAsyncComponent(() => import("@/views/hero/LogIn.vue")),
+    children: [
+      {
+        path: "/hero",
+        component: defineAsyncComponent(
+          () => import("@/views/hero/HeroSection.vue")
+        ),
+      },
+      {
+        path: "/aboutus",
+        component: defineAsyncComponent(
+          () => import("@/views/hero/AboutUsPage.vue")
+        ),
+      },
+      {
+        path: "/pricing",
+        component: defineAsyncComponent(
+          () => import("@/views/hero/Pricing.vue")
+        ),
+      },
+      {
+        path: "/login",
+        component: defineAsyncComponent(() => import("@/views/hero/LogIn.vue")),
+      },
+    ],
   },
 ];
 
