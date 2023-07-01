@@ -7,9 +7,10 @@
     <v-container>
       <v-row>
         <v-col>
-          <h1>Log In As User</h1>
+          <h1>Sign Up as User</h1>
         </v-col>
       </v-row>
+      <!-- email and user -->
       <v-row>
         <v-col>
           <v-text-field
@@ -25,7 +26,22 @@
             variant="outlined"
           ></v-text-field
         ></v-col>
+        <v-col>
+          <v-text-field
+            prepend-inner-icon="mdi-account-box-outline"
+            placeholder="Email"
+            class="mr-2 w-100"
+            color="primary"
+            :rules="rules.requiredEmail"
+            label="Username"
+            v-model="sendInfo.email"
+            clearable
+            :value="sendInfo.email"
+            variant="outlined"
+          ></v-text-field
+        ></v-col>
       </v-row>
+      <!-- password and cofirm password -->
       <v-row>
         <v-col>
           <v-text-field
@@ -43,8 +59,54 @@
             variant="outlined"
           ></v-text-field
         ></v-col>
+        <v-col>
+          <v-text-field
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            @click:append-inner="visible = !visible"
+            prepend-inner-icon="mdi-lock-outline"
+            placeholder="Confirm Password"
+            :rules="rules.requiredPassword"
+            color="primary"
+            clearable
+            label="Confirm Password"
+            v-model="sendInfo.password"
+            :value="sendInfo.password"
+            variant="outlined"
+          ></v-text-field
+        ></v-col>
       </v-row>
-
+      <!-- age and address -->
+      <v-row>
+        <v-col>
+          <v-text-field
+            prepend-inner-icon="mdi-email-outline"
+            placeholder="Age"
+            class="mr-2 w-100"
+            color="primary"
+            :rules="rules.requiredEmail"
+            label="Age"
+            v-model="sendInfo.email"
+            clearable
+            :value="sendInfo.email"
+            variant="outlined"
+          ></v-text-field
+        ></v-col>
+        <v-col>
+          <v-text-field
+            prepend-inner-icon="mdi-account-box-outline"
+            placeholder="Address"
+            class="mr-2 w-100"
+            color="primary"
+            :rules="rules.requiredEmail"
+            label="Address"
+            v-model="sendInfo.email"
+            clearable
+            :value="sendInfo.email"
+            variant="outlined"
+          ></v-text-field
+        ></v-col>
+      </v-row>
       <v-row justify="end" align="end">
         <v-col>
           <v-btn
@@ -57,12 +119,6 @@
             rounded="xl"
             >LogIn</v-btn
           >
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <p>Don't have an account?</p>
-          <router-link to="/signup">Sign up here</router-link>
         </v-col>
       </v-row>
     </v-container>

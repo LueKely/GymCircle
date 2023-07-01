@@ -16,6 +16,7 @@ import UserInfoVue from "@/views/user/UserInfo.vue";
 const routes = [
   {
     path: "/user",
+    redirect: "/user/profile",
     component: DefaultVue,
     children: [
       {

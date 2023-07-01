@@ -1,3 +1,7 @@
 <template>
-  <div>Hello</div>
+  <SignUp></SignUp>
 </template>
+
+<script setup lang="ts">
+import SignUp from "@/components/common/Signup/SignUpForm.vue";
+</script>
