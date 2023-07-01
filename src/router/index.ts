@@ -1,41 +1,42 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
-import { defineAsyncComponent } from "vue";
+import LogIn from "@/views/hero/LogIn.vue";
+import Pricing from "@/views/hero/Pricing.vue";
+import SignUp from "@/views/hero/SignUp.vue";
+import HomePage from "@/views/hero/HomePage.vue";
+import AboutUsPage from "@/views/hero/AboutUsPage.vue";
+import HeroSectionVue from "@/views/hero/HeroSection.vue";
+import PointStoreVue from "@/views/user/PointStore.vue";
+import TransactionHistoryVue from "@/views/user/TransactionHistory.vue";
+import SubscriptionVue from "@/views/user/Subscription.vue";
+import EditInfoVue from "@/views/user/EditInfo.vue";
+import DefaultVue from "@/components/layouts/Default.vue";
+import UserInfoVue from "@/views/user/UserInfo.vue";
 
 const routes = [
   {
     path: "/user",
-    component: () => import("@/components/layouts/Default.vue"),
+    component: DefaultVue,
     children: [
       {
         path: "profile",
-        component: defineAsyncComponent(
-          () => import("@/views/user/UserInfo.vue")
-        ),
+        component: UserInfoVue,
       },
       {
         path: "edit",
-        component: defineAsyncComponent(
-          () => import("@/views/user/EditInfo.vue")
-        ),
+        component: EditInfoVue,
       },
       {
         path: "subscription",
-        component: defineAsyncComponent(
-          () => import("@/views/user/Subscription.vue")
-        ),
+        component: SubscriptionVue,
       },
       {
         path: "history",
-        component: defineAsyncComponent(
-          () => import("@/views/user/TransactionHistory.vue")
-        ),
+        component: TransactionHistoryVue,
       },
       {
         path: "Store",
-        component: defineAsyncComponent(
-          () => import("@/views/user/PointStore.vue")
-        ),
+        component: PointStoreVue,
       },
     ],
   },
@@ -43,29 +44,27 @@ const routes = [
   {
     path: "",
     redirect: "/hero",
-    component: defineAsyncComponent(() => import("@/views/hero/HomePage.vue")),
+    component: HomePage,
     children: [
       {
         path: "/hero",
-        component: defineAsyncComponent(
-          () => import("@/views/hero/HeroSection.vue")
-        ),
+        component: HeroSectionVue,
       },
       {
         path: "/aboutus",
-        component: defineAsyncComponent(
-          () => import("@/views/hero/AboutUsPage.vue")
-        ),
+        component: AboutUsPage,
       },
       {
         path: "/pricing",
-        component: defineAsyncComponent(
-          () => import("@/views/hero/Pricing.vue")
-        ),
+        component: Pricing,
       },
       {
         path: "/login",
-        component: defineAsyncComponent(() => import("@/views/hero/LogIn.vue")),
+        component: LogIn,
+      },
+      {
+        path: "/signup",
+        component: SignUp,
       },
     ],
   },
