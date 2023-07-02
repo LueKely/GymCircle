@@ -1,16 +1,8 @@
 <template>
-  <div>lue is pro tite {{ data }}</div>
+  <div>lue is pro tite</div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
-import axios from "axios";
-import { onMounted } from "vue";
-import { useGetData } from "@/composables/getData";
+// for get request
 
-const { data, error, fetchData } = useGetData(
-  "http://localhost:3030/test",
-  "poopoopeepee"
-);
-
-onMounted(fetchData);
+// for post request
 </script>
