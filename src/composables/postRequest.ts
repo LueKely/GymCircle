@@ -1,22 +1,30 @@
 import { ref } from "vue";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-export function postData(url: string, body: object, head: object) {
-  const data = ref<any>(null); // Change 'any' to the expected data type
+interface ResponseData {
+  message: string;
+}
+
+export function usePostData<T>(url: string, token: string) {
+  const data = ref<ResponseData | null>(null);
   const error = ref<string>("");
 
-  const fetchData = async () => {
+  const postData = async (requestBody: T) => {
     try {
-      const response = await axios.post(
-        url,
-        { ...body },
-        { headers: { ...head } }
-      );
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response: AxiosResponse<ResponseData> =
+        await axios.post<ResponseData>(url, requestBody, config);
+
       data.value = response.data;
     } catch (err: any) {
-      error.value = err;
+      error.value = err.message;
     }
   };
 
-  return { data, error, fetchData };
+  return { data, error, postData };
 }
