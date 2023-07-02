@@ -1,16 +1,28 @@
 import { ref } from "vue";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-export function useDataFetcher(url: string, body: object) {
-  const data = ref<any>(null); // Change 'any' to the expected data type
+interface ResponseData {
+  message: string;
+}
+// add url and string
+export function useGetData(url: string, token: string) {
+  const data = ref<ResponseData | null>(null);
   const error = ref<string>("");
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(url, { ...body });
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response: AxiosResponse<ResponseData> =
+        await axios.get<ResponseData>(url, config);
+
       data.value = response.data;
     } catch (err: any) {
-      error.value = err;
+      error.value = err.message;
     }
   };
 

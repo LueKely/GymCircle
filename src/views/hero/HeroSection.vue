@@ -5,11 +5,11 @@
 import { ref } from "vue";
 import axios from "axios";
 import { onMounted } from "vue";
-import { useDataFetcher } from "@/composables/getData";
+import { useGetData } from "@/composables/getData";
 
-const { data, error, fetchData } = useDataFetcher(
+const { data, error, fetchData } = useGetData(
   "http://localhost:3030/test",
-  {}
+  "poopoopeepee"
 );
 
 onMounted(fetchData);
