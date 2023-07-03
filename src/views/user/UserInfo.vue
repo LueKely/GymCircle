@@ -16,11 +16,14 @@ import Info from "@/components/layouts/Info.vue";
 import Welcome from "@/components/user-info/Welcome.vue";
 import TierCard from "@/components/user-info/TierCard.vue";
 import BulletinBoard from "@/components/user-info/BulletinBoard.vue";
-import { toRaw } from "vue";
+
 import { useLoginStore } from "@/store/LoginStore";
 import { onMounted } from "vue";
 import Session from "@/composables/Session";
+import { User } from "@/store/UserStore";
+import { useUserStore } from "@/store/UserStore";
 const store = useLoginStore();
+const userStore = useUserStore();
 
 import { useGetData } from "@/composables/GetRequest";
 
@@ -32,5 +35,7 @@ const { data, error, fetchData } = useGetData(
 onMounted(async () => {
   await fetchData();
   await console.log(data.value);
+
+  userStore.info.Age = data.value.age;
 });
 </script>
