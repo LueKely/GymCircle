@@ -13,7 +13,7 @@
       <v-row>
         <v-col>
           <v-text-field
-            prepend-inner-icon="mdi-userEmail-outline"
+            prepend-inner-icon="mdi-email-outline"
             placeholder="Email"
             class="mr-2 w-100"
             color="primary"
@@ -75,6 +75,15 @@ import { computed } from "vue";
 import { ref } from "vue";
 import { reactive } from "vue";
 import { usePostData } from "@/composables/PostRequest";
+import { useLoginStore } from "@/store/LoginStore";
+import { useRouter } from "vue-router";
+import Session from "@/composables/Session";
+
+interface RequestBody {
+  userEmail: string;
+  password: string;
+}
+const router = useRouter();
 const visible = ref(false);
 const form = ref(null);
 
@@ -94,8 +103,8 @@ const rules = reactive({
   requiredEmail: [
     (value: string) => !!value || "Required.",
     (value: string) => (value && value.length >= 4) || "Min 4 characters",
-    (value: string) =>
-      patterns.emailPatern.test(value) || "Not a valid userEmail",
+    // (value: string) =>
+    //   patterns.emailPatern.test(value) || "Not a valid userEmail",
   ],
   requiredPassword: [(value: string) => !!value || "Required."],
 });
@@ -105,26 +114,36 @@ const isCorrect = computed(() => {
   return values.every((value) => value !== "");
 });
 
+const url = "http://localhost:3030/login";
+const token = "your_token_here";
+
+const { data, postData, status } = usePostData<RequestBody>(url, token);
+
+const store = useLoginStore();
+
 async function load() {
   if (!form.value) return;
 
   loading.value = true;
   await post();
 }
-const url = "http://localhost:3030/login";
-const token = "your_token_here";
-
-const { data, postData } = usePostData<RequestBody>(url, token);
-
-interface RequestBody {
-  userEmail: string;
-  password: string;
-}
 
 async function post() {
   await postData(sendInfo);
+
+  if (status.value != 200) {
+    alert("Error Wrong Credentials");
+    loading.value = await false;
+    return;
+  }
+
   setTimeout(() => {
     loading.value = false;
-  }, 3000);
+  }, 500);
+
+  store.jwt = (await data.value) || "ERROR";
+  store.isLoggedin = await true;
+  await Session.storeInSessionStorage("key", store.jwt);
+  router.push("/user/profile");
 }
 </script>

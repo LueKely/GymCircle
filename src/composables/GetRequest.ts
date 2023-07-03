@@ -1,30 +1,27 @@
-import { ref } from "vue";
-import axios, { AxiosResponse } from "axios";
+import { ref, computed, toRaw } from "vue";
+import axios from "axios";
 
-interface ResponseData {
-  message: string;
-}
-// add url and string
 export function useGetData(url: string, token: string) {
-  const data = ref<ResponseData | null>(null);
+  const rawData = ref<any | null>(null);
   const error = ref<string>("");
 
   const fetchData = async () => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: token,
         },
       };
 
-      const response: AxiosResponse<ResponseData> =
-        await axios.get<ResponseData>(url, config);
+      const response = await axios.get(url, config);
 
-      data.value = response.data;
+      rawData.value = response.data;
     } catch (err: any) {
       error.value = err.message;
     }
   };
+
+  const data = computed(() => toRaw(rawData.value));
 
   return { data, error, fetchData };
 }

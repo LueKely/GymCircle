@@ -1,14 +1,10 @@
 import { ref } from "vue";
 import axios, { AxiosResponse } from "axios";
 
-interface ResponseData {
-  message: string;
-}
-
 export function usePostData<T>(url: string, token: string) {
-  const data = ref<ResponseData | null>(null);
+  const data = ref<string | null>(null);
   const error = ref<string>("");
-
+  const status = ref<number>();
   const postData = async (requestBody: T) => {
     try {
       const config = {
@@ -17,15 +13,19 @@ export function usePostData<T>(url: string, token: string) {
         },
       };
 
-      const response: AxiosResponse<ResponseData> =
-        await axios.post<ResponseData>(url, requestBody, config);
-      console.log(response);
+      const response: AxiosResponse<string> = await axios.post<string>(
+        url,
+        requestBody,
+        config
+      );
+      // console.log(response);
 
       data.value = response.data;
+      status.value = response.status;
     } catch (err: any) {
       error.value = err.message;
     }
   };
 
-  return { data, error, postData };
+  return { data, error, status, postData };
 }
