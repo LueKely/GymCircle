@@ -19,6 +19,7 @@ export function usePostData<T>(url: string, token: string) {
 
       const response: AxiosResponse<ResponseData> =
         await axios.post<ResponseData>(url, requestBody, config);
+      console.log(response);
 
       data.value = response.data;
     } catch (err: any) {

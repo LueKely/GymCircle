@@ -11,5 +11,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import LogInForm from "@/components/common/LogInForm.vue";
+import LogInForm from "@/components/Logins/LogInForm.vue";
 </script>

@@ -13,15 +13,15 @@
       <v-row>
         <v-col>
           <v-text-field
-            prepend-inner-icon="mdi-email-outline"
+            prepend-inner-icon="mdi-userEmail-outline"
             placeholder="Email"
             class="mr-2 w-100"
             color="primary"
             :rules="rules.requiredEmail"
             label="Email"
-            v-model="sendInfo.email"
+            v-model="sendInfo.userEmail"
             clearable
-            :value="sendInfo.email"
+            :value="sendInfo.userEmail"
             variant="outlined"
           ></v-text-field
         ></v-col>
@@ -74,6 +74,7 @@
 import { computed } from "vue";
 import { ref } from "vue";
 import { reactive } from "vue";
+import { usePostData } from "@/composables/PostRequest";
 const visible = ref(false);
 const form = ref(null);
 
@@ -84,16 +85,17 @@ const patterns = reactive({
 
 const loading = ref(false);
 
-const sendInfo = reactive({
-  email: "",
+const sendInfo = reactive<RequestBody>({
+  userEmail: "",
   password: "",
 });
 
 const rules = reactive({
   requiredEmail: [
     (value: string) => !!value || "Required.",
-    (value: string) => (value && value.length >= 10) || "Min 10 characters",
-    (value: string) => patterns.emailPatern.test(value) || "Not a valid email",
+    (value: string) => (value && value.length >= 4) || "Min 4 characters",
+    (value: string) =>
+      patterns.emailPatern.test(value) || "Not a valid userEmail",
   ],
   requiredPassword: [(value: string) => !!value || "Required."],
 });
@@ -103,9 +105,26 @@ const isCorrect = computed(() => {
   return values.every((value) => value !== "");
 });
 
-function load() {
+async function load() {
   if (!form.value) return;
+
   loading.value = true;
-  setTimeout(() => (loading.value = false), 3000);
+  await post();
+}
+const url = "http://localhost:3030/login";
+const token = "your_token_here";
+
+const { data, postData } = usePostData<RequestBody>(url, token);
+
+interface RequestBody {
+  userEmail: string;
+  password: string;
+}
+
+async function post() {
+  await postData(sendInfo);
+  setTimeout(() => {
+    loading.value = false;
+  }, 3000);
 }
 </script>
