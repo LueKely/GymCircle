@@ -34,8 +34,11 @@ const { data, error, fetchData } = useGetData(
 
 onMounted(async () => {
   await fetchData();
-  await console.log(data.value);
 
-  userStore.info.Age = data.value.age;
+  // userStore.info.Age = await data.value.age;
+  // distributes all the fetched data to all the components
+  await Object.entries(userStore.info).forEach(([key]) => {
+    userStore.info[key] = data.value[key];
+  });
 });
 </script>

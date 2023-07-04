@@ -3,22 +3,27 @@ import { defineStore } from "pinia";
 import { reactive } from "vue";
 
 export interface User {
-  Email: string;
-  UserName: string;
-  Age: number;
-  Address: string;
-  Points: number;
-  Tier: string;
+  [key: string]: any;
+  user_id: number;
+  email: string;
+  name: string;
+  age: number;
+  address: string;
+  points: number;
+  tier: string;
+  days: number;
 }
 
 export const useUserStore = defineStore("user", () => {
   const info = reactive<User>({
-    Email: "SHIBA",
-    UserName: "Name",
-    Age: 0,
-    Address: "ADDRESS",
-    Points: 0,
-    Tier: "Hello",
+    user_id: 0,
+    email: "Email",
+    name: "Name",
+    age: 0,
+    address: "ADDRESS",
+    points: 0,
+    tier: "Hello",
+    days: 0,
   });
 
   return { info };

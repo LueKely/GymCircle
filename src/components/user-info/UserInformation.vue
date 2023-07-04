@@ -18,14 +18,16 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useUserStore } from "@/store/UserStore";
+const userStore = useUserStore();
 
 const lue = ref<any>([
-  { title: "Name", subtitle: "lue", icon: "mdi-account" },
-  { title: "Age", subtitle: 10, icon: "mdi-flower" },
-  { title: "Email", subtitle: "sabu", icon: "mdi-email" },
+  { title: "Name", subtitle: userStore.info.name, icon: "mdi-account" },
+  { title: "Age", subtitle: userStore.info.age, icon: "mdi-flower" },
+  { title: "Email", subtitle: userStore.info.email, icon: "mdi-email" },
   {
     title: "Address",
-    subtitle: "0123 oasdk poop street",
+    subtitle: userStore.info.address,
     icon: "mdi-map-marker",
   },
 ]);

@@ -1,5 +1,8 @@
 <template>
-  <v-card width="300px" class="pa-5"
+  <v-card
+    width="380px"
+    height="450px"
+    class="pa-5 d-flex flex-column align-center justify-space-around"
     ><v-card-title class="text-center text-h6"
       ><h1 class="mb-2">{{ props.info.medal }}</h1>
       {{ props.info.name }}
@@ -11,10 +14,12 @@
           ✅ {{ item }}
         </li>
       </ul>
-      <h2 class="text-center mt-10">Price: ₱{{ props.info.price }}</h2>
     </v-card-text>
+    <h2 class="text-center mt-10">Price: ₱{{ props.info.price }}</h2>
     <v-card-actions>
-      <v-btn variant="tonal" size="large" block @click="poop"> Subscribe</v-btn>
+      <v-btn variant="tonal" size="large" width="300" block @click="poop">
+        Subscribe</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>

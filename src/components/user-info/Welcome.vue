@@ -5,7 +5,12 @@
     color="transparent"
     class="d-flex justify-start align-center elevation-0 mb-5"
   >
-    <v-title class="text-h4">👋 Welcome Back, Lue Kely Anunciacion </v-title>
+    <v-card-title class="text-h4"
+      >👋 Welcome Back, {{ userStore.info.name }}
+    </v-card-title>
   </v-card>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useUserStore } from "@/store/UserStore";
+const userStore = useUserStore();
+</script>

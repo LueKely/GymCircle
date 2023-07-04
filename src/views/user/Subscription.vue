@@ -69,20 +69,34 @@ const pricingInfo = ref<tier[]>([
   {
     medal: "🥉",
     name: "Bronze",
-    list: ["Test", "It niggad"],
-    price: 10,
+    list: [
+      "Unlimited access to the standard gym facilities.",
+      "Unlimited water refill",
+      "GymCircle ID",
+    ],
+    price: 500,
   },
   {
     medal: "🥈",
     name: "Silver",
-    list: ["Test", "It niggad"],
-    price: 10,
+    list: [
+      "Unlimited access to the standard gym facilities and plyometrics equipment",
+      "Unlimited water refill",
+      "GymCircle official shaker bottle",
+      "GymCircle ID",
+    ],
+    price: 1250,
   },
   {
     medal: "🥇",
     name: "Gold",
-    list: ["Test", "It niggad"],
-    price: 10,
+    list: [
+      "Unlimited access to the standard gym facilities",
+      "Unlimited water refill",
+      "Free 1 pack of Whey Protein (1lb) and 50 tablets of MultiVitamins",
+      "GymCircle ID",
+    ],
+    price: 1650,
   },
 ]);
 
