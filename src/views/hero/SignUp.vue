@@ -12,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-import SignUpForm from "@/components/common/SignUp/SignUpForm.vue";
+import SignUpForm from "@/components/SignUp/SignUpForm.vue";
 </script>
