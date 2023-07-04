@@ -28,7 +28,7 @@
         <v-col>
           <v-text-field
             prepend-inner-icon="mdi-account-box-outline"
-            placeholder="Email"
+            placeholder="User"
             class="mr-2 w-100"
             color="primary"
             :rules="rules.address"
@@ -130,6 +130,8 @@
 import { computed } from "vue";
 import { ref } from "vue";
 import { reactive } from "vue";
+import { usePutData } from "@/composables/PutRequest";
+import { useRouter } from "vue-router";
 const visible = ref(false);
 const form = ref(null);
 
@@ -141,6 +143,19 @@ const patterns = reactive({
 
 const loading = ref(false);
 
+interface RequestBody {
+  Name: string;
+  userEmail: string;
+  password: string;
+  Age: string;
+  Address: string;
+  Tier: string;
+  Points: number;
+}
+const url = "http://localhost:3030/login/register";
+const token = "your_token_here";
+
+const { data, status, putData } = usePutData<RequestBody>(url, token);
 const sendInfo = reactive({
   email: "",
   username: "",
@@ -150,12 +165,27 @@ const sendInfo = reactive({
   address: "",
 });
 
+const finalInfo = computed((): RequestBody => {
+  return {
+    Name: sendInfo.username,
+    userEmail: sendInfo.email,
+    password: sendInfo.password,
+    Age: sendInfo.age,
+    Address: sendInfo.address,
+    Tier: "None",
+    Points: 0,
+  };
+});
+
 const rules = reactive({
   requiredEmail: [
     (value: string) => !!value || "Required.",
     (value: string) => patterns.emailPatern.test(value) || "Not a valid email",
   ],
-  requiredPassword: [(value: string) => !!value || "Required."],
+  requiredPassword: [
+    (value: string) => !!value || "Required.",
+    (value: string) => (value && value.length >= 10) || "Min 10 characters",
+  ],
   confirmPassword: [
     (value: string) => !!value || "Required.",
     () =>
@@ -176,9 +206,20 @@ const isCorrect = computed(() => {
   return values.every((value) => value !== "");
 });
 
-function load() {
+async function check() {
+  if ((await status.value) == 200) {
+    await alert("SUCCESS");
+    useRouter().push("/login");
+  } else {
+    await alert("USER EMAIL ALREADY EXISTS");
+  }
+}
+async function load() {
   if (!form.value) return;
   loading.value = true;
-  setTimeout(() => (loading.value = false), 3000);
+
+  await putData(finalInfo.value);
+  await check();
+  loading.value = await false;
 }
 </script>
