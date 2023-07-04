@@ -17,18 +17,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useUserStore } from "@/store/UserStore";
 const userStore = useUserStore();
 
-const lue = ref<any>([
-  { title: "Name", subtitle: userStore.info.name, icon: "mdi-account" },
-  { title: "Age", subtitle: userStore.info.age, icon: "mdi-flower" },
-  { title: "Email", subtitle: userStore.info.email, icon: "mdi-email" },
-  {
-    title: "Address",
-    subtitle: userStore.info.address,
-    icon: "mdi-map-marker",
-  },
-]);
+const lue = computed(() => {
+  return [
+    { title: "Name", subtitle: userStore.info.name, icon: "mdi-account" },
+    { title: "Age", subtitle: userStore.info.age, icon: "mdi-flower" },
+    { title: "Email", subtitle: userStore.info.email, icon: "mdi-email" },
+    {
+      title: "Address",
+      subtitle: userStore.info.address,
+      icon: "mdi-map-marker",
+    },
+  ];
+});
 </script>

@@ -155,7 +155,7 @@ interface RequestBody {
 const url = "http://localhost:3030/login/register";
 const token = "your_token_here";
 
-const { data, status, putData } = usePutData<RequestBody>(url, token);
+const { status, putData } = usePutData<RequestBody>(url, token);
 const sendInfo = reactive({
   email: "",
   username: "",
