@@ -209,7 +209,6 @@ const isCorrect = computed(() => {
 async function check() {
   if ((await status.value) == 200) {
     await alert("SUCCESS");
-    useRouter().push("/login");
   } else {
     await alert("USER EMAIL ALREADY EXISTS");
   }

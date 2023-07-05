@@ -1,12 +1,8 @@
 import { ref } from "vue";
 import axios, { AxiosResponse } from "axios";
 
-interface ResponseData {
-  message: string;
-}
-
 export function usePutData<T>(url: string, token: string) {
-  const data = ref<ResponseData | null>(null);
+  const data = ref<string>("");
   const error = ref<string>("");
   const status = ref<number>();
 
@@ -14,12 +10,15 @@ export function usePutData<T>(url: string, token: string) {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
         },
       };
 
-      const response: AxiosResponse<ResponseData> =
-        await axios.put<ResponseData>(url, requestBody, config);
+      const response: AxiosResponse<string> = await axios.put<string>(
+        url,
+        requestBody,
+        config
+      );
 
       data.value = response.data;
       status.value = response.status;
