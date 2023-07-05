@@ -49,8 +49,6 @@ const announcements = ref();
 
 onMounted(async () => {
   await fetchData();
-  await console.log(data.value);
   announcements.value = await cloneArray(data.value);
-  await console.log(announcements.value[0].color);
 });
 </script>

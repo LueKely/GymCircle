@@ -26,4 +26,12 @@ export default {
     }
     return null;
   },
+  deleteSessionKey(key: string) {
+    if (typeof key === "string") {
+      sessionStorage.removeItem(key);
+      console.log(`Key '${key}' deleted from session.`);
+    } else {
+      console.error("Invalid key. Please provide a valid string key.");
+    }
+  },
 };

@@ -39,15 +39,30 @@
         </v-list>
       </div>
 
-      <div class="px-5 w-100"><v-btn block> Logout </v-btn></div>
+      <div class="px-5 w-100">
+        <v-btn block @click="logOut"> Logout </v-btn>
+      </div>
     </div>
   </v-navigation-drawer>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
-
+import { useRouter } from "vue-router";
+import Session from "@/composables/Session";
+import { useUserStore } from "@/store/UserStore";
+import { useLoginStore } from "@/store/LoginStore";
+const router = useRouter();
+const store = useUserStore();
+const loginStore = useLoginStore();
 const routerName = ref((input: string) => {
   return `/user/${input}`;
 });
+
+function logOut() {
+  store.reset();
+  loginStore.reset();
+  Session.deleteSessionKey("key");
+  router.push("/hero");
+}
 </script>

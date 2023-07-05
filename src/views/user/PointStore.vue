@@ -154,7 +154,6 @@ async function openDialog(e: number) {
   confirmSubmission.value = true;
   currentItem.value = e;
   await putData(bill.value);
-  await console.log(status.value);
   transactionReceipt.value = await data.value;
 }
 

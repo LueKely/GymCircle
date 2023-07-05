@@ -26,5 +26,15 @@ export const useUserStore = defineStore("user", () => {
     days: 0,
   });
 
-  return { info };
+  function reset() {
+    info.user_id = 0;
+    info.email = "Email";
+    info.age = 0;
+    info.address = "address";
+    info.points = 0;
+    info.tier = "hello";
+    info.days = 0;
+  }
+
+  return { info, reset };
 });

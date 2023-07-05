@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useUserStore } from "@/store/UserStore";
 const userStore = useUserStore();
 
@@ -26,6 +26,11 @@ const lue = computed(() => {
     { title: "Name", subtitle: userStore.info.name, icon: "mdi-account" },
     { title: "Age", subtitle: userStore.info.age, icon: "mdi-flower" },
     { title: "Email", subtitle: userStore.info.email, icon: "mdi-email" },
+    {
+      title: "Days Attended",
+      subtitle: String(userStore.info.days),
+      icon: "mdi-calendar-account",
+    },
     {
       title: "Address",
       subtitle: userStore.info.address,
