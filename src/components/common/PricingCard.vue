@@ -17,7 +17,7 @@
     </v-card-text>
     <h2 class="text-center mt-10">Price: ₱{{ props.info.price }}</h2>
     <v-card-actions>
-      <v-btn variant="tonal" size="large" width="300" block @click="poop">
+      <v-btn variant="tonal" size="large" width="300" block @click="emitAll">
         Subscribe</v-btn
       >
     </v-card-actions>
@@ -29,11 +29,12 @@ import { tier } from "@/views/user/Subscription.vue";
 const props = defineProps<{ info: tier }>();
 const emit = defineEmits<{
   change: [value: boolean];
-  update: [value: string];
+  response: [value: string];
 }>();
 
-function poop() {
+function emitAll() {
   emit("change", true);
+  emit("response", props.info.medal);
 }
 </script>
 

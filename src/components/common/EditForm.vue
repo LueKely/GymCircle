@@ -16,7 +16,7 @@
             class="mr-2"
             color="primary"
             :rules="rules.required"
-            label="Full Name"
+            label="Full name"
             v-model="sendInfo.name"
             clearable
             :value="sendInfo.name"
@@ -38,10 +38,10 @@
       <v-row>
         <v-col>
           <v-text-field
-            :rules="rules.requiredAge"
+            :rules="rules.requiredage"
             color="primary"
             clearable
-            label="Age"
+            label="age"
             v-model="sendInfo.age"
             :value="sendInfo.age"
             variant="outlined"
@@ -53,7 +53,7 @@
           <v-text-field
             color="primary"
             :rules="rules.required"
-            label="Address"
+            label="address"
             v-model="sendInfo.address"
             clearable
             :value="sendInfo.address"
@@ -85,8 +85,12 @@
 import { computed } from "vue";
 import { ref } from "vue";
 import { reactive } from "vue";
+import { useUserStore } from "@/store/UserStore";
+import { usePatchData } from "@/composables/PatchRequest";
+import Session from "@/composables/Session";
 
 const form = ref(null);
+const store = useUserStore();
 
 const patterns = reactive({
   emailPatern:
@@ -95,16 +99,23 @@ const patterns = reactive({
 });
 
 const loading = ref(false);
+const url = "http://localhost:3030/user";
+const key = Session.getSessionKey("key");
 
-const inputInfo = reactive({
-  name: "lue",
-  email: "lue is tired",
-  age: 5,
-  address: "go fuck yourself",
-});
+interface RequestBody {
+  email: string;
+  name: string;
+  age: number;
+  address: string;
+}
+
+const { patchData } = usePatchData<RequestBody>(url, key);
 
 const sendInfo = reactive({
-  ...inputInfo,
+  email: store.info.email,
+  name: store.info.name,
+  age: store.info.age,
+  address: store.info.address,
 });
 
 const rules = reactive({
@@ -117,7 +128,7 @@ const rules = reactive({
     (value: string) => (value && value.length >= 10) || "Min 10 characters",
     (value: string) => patterns.emailPatern.test(value) || "Not a valid email",
   ],
-  requiredAge: [
+  requiredage: [
     (value: string) => !!value || "Required.",
     (value: string) => patterns.agePatter.test(value) || "Numbers only",
   ],
@@ -128,9 +139,11 @@ const isCorrect = computed(() => {
   return values.every((value) => value !== "");
 });
 
-function load() {
+async function load() {
+  console.log(sendInfo);
   if (!form.value) return;
   loading.value = true;
-  setTimeout(() => (loading.value = false), 3000);
+  await patchData(sendInfo);
+  loading.value = await false;
 }
 </script>

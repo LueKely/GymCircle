@@ -12,7 +12,11 @@
       color="transparent"
     >
       <div class="mx-5" v-for="(info, index) in pricingInfo" :key="index">
-        <PricingCard :info="info" @change="handleEmit"></PricingCard>
+        <PricingCard
+          :info="info"
+          @change="handleEmit"
+          @response="handleResponse"
+        ></PricingCard>
       </div>
     </v-sheet>
   </v-sheet>
@@ -54,6 +58,10 @@
 </template>
 <script setup lang="ts">
 import PricingCard from "@/components/common/PricingCard.vue";
+import { usePutData } from "@/composables/PutRequest";
+import Session from "@/composables/Session";
+import { computed, reactive } from "vue";
+
 import { ref } from "vue";
 
 export interface tier {
@@ -64,7 +72,9 @@ export interface tier {
 }
 const confirmation = ref<boolean>(false);
 const generated = ref<boolean>(false);
-const transaction = ref<string>("insert-transaction-number-here");
+const transaction = computed(() => {
+  return data.value;
+});
 const pricingInfo = ref<tier[]>([
   {
     medal: "🥉",
@@ -99,17 +109,80 @@ const pricingInfo = ref<tier[]>([
     price: 1650,
   },
 ]);
+const select = ref("");
+
+interface ResponseBody {
+  name: string;
+  type: string;
+  price: number;
+}
+
+const optionMap = new Map<string, ResponseBody>([
+  [
+    "🥉",
+    reactive({
+      name: "Bronze",
+      type: "subscription",
+      price: pricingInfo.value[0].price,
+    }),
+  ],
+  [
+    "🥈",
+    reactive({
+      name: "Silver",
+      type: "subscription",
+      price: pricingInfo.value[1].price,
+    }),
+  ],
+  [
+    "🥇",
+    reactive({
+      name: "Gold",
+      type: "subscription",
+      price: pricingInfo.value[2].price,
+    }),
+  ],
+]);
+
+const bill = computed<ResponseBody>(() => {
+  const payload = optionMap.get(select.value);
+
+  if (payload) {
+    return {
+      name: payload.name,
+      type: payload.type,
+      price: payload.price,
+    };
+  } else
+    return {
+      name: "",
+      type: "",
+      price: 0,
+    };
+});
+const url = "http://localhost:3030/user/transaction";
+const key = Session.getSessionKey("key");
+
+const { data, putData } = usePutData<ResponseBody>(url, key);
 
 function handleEmit(e: boolean) {
   confirmation.value = e;
 }
 
-function confirmTransaction() {
-  confirmation.value = false;
-  generated.value = true;
+function handleResponse(e: string) {
+  select.value = e;
 }
 
-function copyText() {
-  navigator.clipboard.writeText(transaction.value);
+async function confirmTransaction() {
+  confirmation.value = false;
+
+  await putData(bill.value);
+
+  await console.log(data.value);
+  generated.value = await true;
+}
+
+async function copyText() {
+  await navigator.clipboard.writeText(transaction.value);
 }
 </script>

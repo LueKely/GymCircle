@@ -9,7 +9,7 @@ export function usePostData<T>(url: string, token: string) {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
         },
       };
 

@@ -103,8 +103,8 @@ const rules = reactive({
   requiredEmail: [
     (value: string) => !!value || "Required.",
     (value: string) => (value && value.length >= 4) || "Min 4 characters",
-    // (value: string) =>
-    //   patterns.emailPatern.test(value) || "Not a valid userEmail",
+    (value: string) =>
+      patterns.emailPatern.test(value) || "Not a valid userEmail",
   ],
   requiredPassword: [(value: string) => !!value || "Required."],
 });
