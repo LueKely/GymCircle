@@ -12,10 +12,10 @@
       </v-card>
     </div>
 
-    <v-sheet border rounded width="100%" class="mt-2 pa-5">
+    <v-sheet border rounded width="100%" class="mt-2 pa-2 test">
       <h3 class="mb-3">What you can redeem:</h3>
-      <div class="d-flex items-center">
-        <div v-for="(item, index) in payload" :key="index" class="mx-2">
+      <div class="d-flex flex-wrap items-center justify-start">
+        <div v-for="(item, index) in payload" :key="index" class="mx-2 my-2">
           <shop-card
             :card-name="item.cardName"
             :url="item.url"
@@ -51,7 +51,7 @@
         size="90"
       ></v-icon>
       <v-card-title> 🎉CONGRATULATIONS!!🎉</v-card-title>
-      <h1>{{ transaction }} + {{ currentItem }}</h1>
+      <h1>{{ transactionReceipt }}</h1>
       <v-card-text>
         Here is your transaction number please show this to our registrar and
         bring the appropriate cash. Your transaction receipts will be stored in
@@ -68,33 +68,98 @@
 
 <script setup lang="ts">
 import ShopCard from "@/components/common/ShopCard.vue";
+import { usePutData } from "@/composables/PutRequest";
+import Session from "@/composables/Session";
+import { computed } from "vue";
 import { ref } from "vue";
-const transaction = ref("poo");
+import { useUserStore } from "@/store/UserStore";
+const store = useUserStore();
+const transactionReceipt = ref("poo");
 const confirmSubmission = ref(false);
 const generated = ref(false);
 const payload = [
   {
-    cardName: "hotdog",
-    url: "https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg",
-    points: 100,
+    cardName: "10% off to the next renewal",
+    url: "/public/Discount.webp",
+    points: 9,
   },
   {
-    cardName: "hotdog",
-    url: "https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg",
-    points: 100,
+    cardName: "9% off to Beverages",
+    url: "/public/beverage.jpeg",
+    points: 9,
+  },
+  {
+    cardName: "Gym Official Socks",
+    url: "/public/Socks.jpeg",
+    points: 18,
+  },
+  {
+    cardName: "Gym Official Wristband",
+    url: "/public/wristband.jpeg",
+    points: 18,
+  },
+  {
+    cardName: "Gym Official Tumbler",
+    url: "/public/Tumbler.jpeg",
+    points: 20,
+  },
+  {
+    cardName: "Gym Official Shaker",
+    url: "/public/Shaker.webp",
+    points: 20,
+  },
+  {
+    cardName: "Gym Official T-Shirt",
+    url: "/public/Shirt.webp",
+    points: 25,
+  },
+
+  {
+    cardName: "1lb of Whey Protein",
+    url: "/public/protein.jpeg",
+    points: 30,
+  },
+
+  {
+    cardName: "50 tablets of supplements of choice (220mg)",
+    url: "/public/droogs.jpeg",
+    points: 30,
   },
 ];
+interface ResponseBody {
+  name: string;
+  type: string;
+  price: number;
+}
 
+const bill = computed((): ResponseBody => {
+  return {
+    name: payload[currentItem.value].cardName,
+    type: "points",
+    price: payload[currentItem.value].points,
+  };
+});
 const currentItem = ref<number>(0);
-const currentPoints = ref<number>(0);
 
-function openDialog(e: number) {
+const url = "http://localhost:3030/user/transaction";
+const key = Session.getSessionKey("key");
+
+const { status, data, putData } = usePutData<ResponseBody>(url, key);
+
+const currentPoints = computed(() => {
+  return store.info.points;
+});
+
+async function openDialog(e: number) {
   confirmSubmission.value = true;
   currentItem.value = e;
-  // do anything you want here
+  await putData(bill.value);
+  await console.log(status.value);
+  transactionReceipt.value = await data.value;
 }
 
 function copyText() {
-  navigator.clipboard.writeText(transaction.value);
+  navigator.clipboard.writeText(transactionReceipt.value);
 }
 </script>
+<style scoped></style>
