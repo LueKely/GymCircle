@@ -1,5 +1,10 @@
 <template>
-  <v-data-table :headers="head" :items="item">
+  <v-data-table
+    :headers="head"
+    :items="item"
+    :loading="loading"
+    @update:options="loadItems"
+  >
     <template v-slot:item.status="{ item }">
       <v-chip :color="getBackgroundColor(item.columns.status)">
         {{ item.columns.status }}
@@ -11,7 +16,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { VDataTable } from "vuetify/labs/VDataTable";
-
+import { useGetData } from "@/composables/GetRequest";
+import Session from "@/composables/Session";
+import { onMounted } from "vue";
 type UnwrapReadonlyArrayType<A> = A extends Readonly<Array<infer I>>
   ? UnwrapReadonlyArrayType<I>
   : A;
@@ -19,8 +26,14 @@ type DT = InstanceType<typeof VDataTable>;
 type ReadonlyDataTableHeader = UnwrapReadonlyArrayType<DT["headers"]>;
 
 const getBackgroundColor = (prop: string): string => {
-  return prop === "Not Paid" ? "red" : "green";
+  return prop === "not paid" ? "red" : "green";
 };
+
+const { data, fetchData } = useGetData(
+  "http://localhost:3030/user/transaction",
+  Session.getSessionKey("key")
+);
+const loading = ref(false);
 
 const head = ref<Array<ReadonlyDataTableHeader>>([
   {
@@ -31,25 +44,19 @@ const head = ref<Array<ReadonlyDataTableHeader>>([
   },
   { title: "Name", key: "name" },
   { title: "Type", key: "type" },
-  { title: "Date", key: "carbs" },
+  { title: "Price", key: "price" },
+  { title: "Date", key: "date" },
   { title: "Status", key: "status" },
 ]);
 
-const item = ref([
-  {
-    id: "Frozen Yogurt",
-    name: 159,
-    type: "Not Paid",
-    carbs: 24,
-    status: "Paid",
-  },
+const item = ref([]);
 
-  {
-    id: "Cupcake",
-    name: 305,
-    type: "Paid",
-    carbs: 67,
-    status: "Not Paid",
-  },
-]);
+async function loadItems() {
+  loading.value = await true;
+  await fetchData();
+  item.value = await data.value;
+  loading.value = await false;
+}
+
+onMounted(async () => {});
 </script>
