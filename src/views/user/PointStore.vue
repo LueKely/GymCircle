@@ -30,7 +30,7 @@
 
   <v-dialog v-model="confirmSubmission" width="auto">
     <v-card>
-      <v-card-text> Are you sure you want to subscribe? </v-card-text>
+      <v-card-text> Are you sure you want to redeem? </v-card-text>
       <v-card-actions class="mx-auto">
         <v-btn color="primary" @click="confirmSubmission = false">No</v-btn>
         <v-btn
@@ -53,9 +53,9 @@
       <v-card-title> 🎉CONGRATULATIONS!!🎉</v-card-title>
       <h1>{{ transactionReceipt }}</h1>
       <v-card-text>
-        Here is your transaction number please show this to our registrar and
-        bring the appropriate cash. Your transaction receipts will be stored in
-        your transaction history so don't worry.
+        Here is your transaction number please show this to our registrar. Your
+        transaction receipts will be stored in your transaction history so don't
+        worry.
       </v-card-text>
       <v-divider class="border-opacity-100 my-2"></v-divider>
       <v-card-actions class="mx-auto">
