@@ -18,7 +18,7 @@
           </div>
           <div class="card-body" style="color: white">
             <p class="text-center">For Starters</p>
-            <h2 class="text-center">₱800 <small>/ 1 month</small></h2>
+            <h2 class="text-center">₱500 <small>/ per month</small></h2>
             <ul>
               <li>Unlimited Access at Standard Gym Only</li>
               <li>Unlimited Water Refill</li>
@@ -40,7 +40,7 @@
           </div>
           <div class="card-body" style="color: white">
             <p class="text-center">For Standard Gym Goers</p>
-            <h2 class="text-center">₱5,000 <small>/ 3 months</small></h2>
+            <h2 class="text-center">₱1,250 <small>/ per month</small></h2>
             <ul>
               <li>
                 Unlimited Access at Standard Gym and Plyometrics Equipment
@@ -65,7 +65,7 @@
           </div>
           <div class="card-body" style="color: white">
             <p class="text-center">For Professionals</p>
-            <h2 class="text-center">₱10,000 <small>/ 1 year</small></h2>
+            <h2 class="text-center">₱1650 <small>/ per month</small></h2>
             <ul>
               <li>
                 Unlimited Access at Standard Gym, Plyometrics Equipment, and
