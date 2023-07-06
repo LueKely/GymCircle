@@ -8,16 +8,21 @@
         End: {{ expiration }}
       </p>
     </v-card-text>
-    <v-list
+    <v-list density="compact"
       ><v-list-subheader>Perks</v-list-subheader>
-      <v-list-item v-for="(item, index) in benefits" :key="index"
-        >• {{ item }}
+      <v-list-item
+        min-height="10px"
+        density="compact"
+        v-for="(item, index) in benefits"
+        :key="index"
+      >
+        • {{ item }}
       </v-list-item>
     </v-list>
   </v-card>
 </template>
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useTierStore } from "@/store/TierStore";
 const tier = computed(() => {
   if (store.currentTier == "Gold") return "Gold 🥇";

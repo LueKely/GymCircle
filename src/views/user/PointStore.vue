@@ -1,12 +1,13 @@
 <template>
-  <v-sheet width="100%" height="100%" color="transparent" class="pa-5">
+  <v-sheet width="100%" height="100%" color="blue-grey-lighten-5" class="pa-5">
     <div class="d-flex justify-space-between align-center">
       <h1>Points Store 🏪</h1>
       <v-card
         width="250"
         height="70"
         class="d-flex justify-start align-center"
-        variant="elevated"
+        elevation="0"
+        variant="text"
       >
         <v-card-title> Current Points: {{ currentPoints }}</v-card-title>
       </v-card>

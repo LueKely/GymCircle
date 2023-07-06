@@ -4,6 +4,7 @@
     :items="item"
     :loading="loading"
     @update:options="loadItems"
+    class="rounded-lg"
   >
     <template v-slot:item.status="{ item }">
       <v-chip :color="getBackgroundColor(item.columns.status)">

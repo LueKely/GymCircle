@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 h-100 pa-5">
+  <div class="w-100 h-100 pa-5 bg-blue-grey-lighten-5">
     <slot name="header"></slot>
 
     <div class="d-flex">

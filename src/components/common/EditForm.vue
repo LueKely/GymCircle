@@ -2,7 +2,7 @@
   <v-form
     @submit.prevent="load"
     v-model="form"
-    class="w-50 d-flex align-center justify-center elevation-2 pa-2"
+    class="w-50 d-flex align-center justify-center elevation-2 pa-2 bg-white rounded-lg"
   >
     <v-container>
       <v-row>

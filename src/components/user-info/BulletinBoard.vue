@@ -1,7 +1,7 @@
 <template>
   <v-card width="100%" class="pb-10">
     <v-card-title>📢 Bulletin Board </v-card-title>
-    <v-timeline side="end" density="compact" class="mx-5">
+    <v-timeline side="end" density="comfortable" class="mx-5 pb-7">
       <v-timeline-item
         size="small"
         v-for="(item, index) in announcements"

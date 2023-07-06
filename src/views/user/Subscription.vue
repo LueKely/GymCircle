@@ -2,7 +2,7 @@
   <v-sheet
     width="100%"
     height="100%"
-    color="transparent"
+    color="blue-grey-lighten-5"
     class="d-flex flex-column align-center justify-center pa-15"
   >
     <h1 class="mb-10 text-h2">Choose Your Plan</h1>
