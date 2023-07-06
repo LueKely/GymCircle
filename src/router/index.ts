@@ -12,12 +12,25 @@ import SubscriptionVue from "@/views/user/Subscription.vue";
 import EditInfoVue from "@/views/user/EditInfo.vue";
 import DefaultVue from "@/components/layouts/Default.vue";
 import UserInfoVue from "@/views/user/UserInfo.vue";
+import { RouteLocationNormalized } from "vue-router";
+import Session from "@/composables/Session";
 
 const routes = [
   {
     path: "/user",
     redirect: "/user/profile",
     component: DefaultVue,
+    meta: { requiresAuth: true },
+    beforeEnter: (to: RouteLocationNormalized) => {
+      if (
+        to.meta.requiresAuth &&
+        Session.checkSessionKeyExists("key") == false
+      ) {
+        return {
+          path: "/hero",
+        };
+      }
+    },
     children: [
       {
         path: "profile",

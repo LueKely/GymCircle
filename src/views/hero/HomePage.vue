@@ -1,6 +1,5 @@
 <template>
   <navbar></navbar>
-  <router-link to="/user/profile">PROFILE</router-link>
   <router-view></router-view>
 </template>
 

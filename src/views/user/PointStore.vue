@@ -80,49 +80,49 @@ const generated = ref(false);
 const payload = [
   {
     cardName: "10% off to the next renewal",
-    url: "/public/Discount.webp",
+    url: "/Discount.webp",
     points: 9,
   },
   {
     cardName: "9% off to Beverages",
-    url: "/public/beverage.jpeg",
+    url: "/beverage.jpeg",
     points: 9,
   },
   {
     cardName: "Gym Official Socks",
-    url: "/public/Socks.jpeg",
+    url: "/Socks.jpeg",
     points: 18,
   },
   {
     cardName: "Gym Official Wristband",
-    url: "/public/wristband.jpeg",
+    url: "/wristband.jpeg",
     points: 18,
   },
   {
     cardName: "Gym Official Tumbler",
-    url: "/public/Tumbler.jpeg",
+    url: "/Tumbler.jpeg",
     points: 20,
   },
   {
     cardName: "Gym Official Shaker",
-    url: "/public/Shaker.webp",
+    url: "/Shaker.webp",
     points: 20,
   },
   {
     cardName: "Gym Official T-Shirt",
-    url: "/public/Shirt.webp",
+    url: "/Shirt.webp",
     points: 25,
   },
 
   {
     cardName: "1lb of Whey Protein",
-    url: "/public/protein.jpeg",
+    url: "/protein.jpeg",
     points: 30,
   },
 
   {
     cardName: "50 tablets of supplements of choice (220mg)",
-    url: "/public/droogs.jpeg",
+    url: "/droogs.jpeg",
     points: 30,
   },
 ];
@@ -144,7 +144,7 @@ const currentItem = ref<number>(0);
 const url = "http://localhost:3030/user/transaction";
 const key = Session.getSessionKey("key");
 
-const { status, data, putData } = usePutData<ResponseBody>(url, key);
+const { data, putData } = usePutData<ResponseBody>(url, key);
 
 const currentPoints = computed(() => {
   return store.info.points;
